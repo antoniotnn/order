@@ -1,62 +1,76 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+#README
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+#to run the application in dev mode:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+#run in terminal
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+php artisan migrate  (to generate all migration data)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+#after that, a default user with login: admin@admin.com and password 1234 will be created.
 
-## Learning Laravel
+#to run application
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+php artisan run serve --port=80
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#(dont forget to configure .env file, to match your environment configuration)
 
-## Laravel Sponsors
+npm run watch  (to compile vue.js assets, in dev mode)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+#How to execute tests:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+#1. In the project root directory, run the command: vendor/bin/phpunit (to run all tests)
 
-## Contributing
+OR
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#2. vendor/bin/phpunit --filter name_of_method_to_test (to run specific test)
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Available Tests:
 
-## Security Vulnerabilities
+#1 - Check, If the migration witch added user with email 'admin@admin.com' was correctly inserted after initial migration
+# run on terminal, in project root directory
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+vendor/bin/phpunit --filter check_if_user_admin_is_correctly_inserted
 
-## License
+#2 - Check if path is being redirected to /login , after trying to access "/" path.
+# run on terminal, in project root directory
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+vendor/bin/phpunit --filter check_if_page_redirected_to_login
+
+#Executing Browsing Tests
+
+# Run on root project directory the following command:
+
+php artisan dusk
+
+Available Test:
+
+#1. Check if Login Function is Working.
+
+php artisan dusk --filter check_if_login_function_is_working()
+
+#APPLICATION USAGE
+
+After login, we have 2 options in the front application:
+Show Orders and Create Order.
+
+in addition we have some endpoints that can accept some requests:
+
+/orders/agregated (GET): This return agregated by OrderCode findAll 
+
+/orders/update-custom (PATCH,PUT): Update route using body with attributes 
+OrderId, OrderCode, OrderDate, TotalAmountWithoutDiscount ,TotalAmountWithDiscount
+
+/orders/update-custom2 (PATCH,PUT): Update route using body with attributes 
+id, code, date, total, discount
+
+/orders/update-custom3 (PATCH,PUT): Update route using body with attributes 
+id, code, date, totalAmount, totalAmountWithDiscount.
+
+Enjoy it testing.
+
+
+
+
