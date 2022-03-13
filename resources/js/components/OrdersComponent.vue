@@ -31,10 +31,6 @@ export default {
 
                 orders: { data: [] },
 
-                ArticleCode: '',
-                ArticleName: '',
-                UnitPrice: '',
-                Quantity: '',
                 ApiResponse: {
                     OrderId: '',
                     OrderCode: '',

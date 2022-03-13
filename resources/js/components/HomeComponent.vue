@@ -1,15 +1,16 @@
 <template>
-    <div class="container" >
+    <div class="container">
+
         
-        <div class="col-md-4" >
+        <div class="col-md-6">
             <div v-if="!creating && !listing">
                 <div class="card">
                     <div class="card-header text-center">
                         Order App
                     </div>
-                    <div class="card-body text-center">
+                    <div class="card-body text-center" dusk="show-buttons">
                         <button class="btn btn-primary mb-2" @click="listOrders()">Show Orders</button>
-                        <button class="btn btn-primary mb-2" @click="createOrder()">Create an Order</button>
+                        <button class="btn btn-secondary mb-2" @click="createOrder()">Create an Order</button>
                     </div>
                 </div>
             </div>

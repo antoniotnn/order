@@ -19,9 +19,9 @@
         </div>
         <div class="col-md-12">
             <div class="row">
-                <button type="button" class="btn btn-primary mt-0" @click="save()">Save</button>
+                <button v-if="transactionStatus!='success'" type="button" class="btn btn-primary mt-0" @click="save()">Save</button>
                 
-                <div class="mt-2 text-success" v-if="transactionStatus==='success'">
+                <div class="card mt-2 text-success" v-if="transactionStatus==='success'">
                     OrderId: {{ ApiResponse.OrderId }}, <br>
                     OrderCode: {{ ApiResponse.OrderCode }}, <br> 
                     OrderDate: {{ ApiResponse.OrderDate }}, <br> 
@@ -31,7 +31,7 @@
 
             </div>
 
-            <div class=" card ml-2 mt-2 text-danger" v-if="transactionStatus==='error'">
+            <div class="card ml-2 mt-2 text-danger" v-if="transactionStatus==='error'">
                 Status: {{ transactionStatus }}, <br>
                 Message: {{ transactionDetails.message }}, <br> 
                 Details: {{ transactionDetails.transaction_details }}, <br> 
@@ -108,10 +108,13 @@
                     });
                 setTimeout(() => {
                     this.resetState();
-                }, 15000);
+                }, 10000);
                     
             }
             
+        },
+        beforeMounted() {
+            //this.checkResponse();
         }
 
     }
