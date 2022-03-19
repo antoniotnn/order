@@ -12,7 +12,7 @@
             </thead>
             <tbody>
                 <tr v-for="order, o in orders" :key="o">
-                    <td v-for="value in order" :key="value">
+                    <td v-for="value in order" :key="value.OrderId">
                         <span>{{value}}</span>
                     </td>
                 </tr>
